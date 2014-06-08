@@ -1,3 +1,36 @@
+spamsink: Dispose of spam, in the cloud.
+
+A memory hole/tarpit for spam, based on smtp-benchmark
+by Marc Balmer.
+
+We knew that spammers control a lot of bandwidth, via
+botnets.
+
+But now (bwah ha ha) we control much bandwidth too,
+because we have cheap or free cloud VMs.  Let the
+games begin.
+
+How to use:
+
+1. Build this with "capstan build"
+
+2. Deploy to your favorite private or public cloud.
+
+3. Point some MX records and spamtrap addresses at it.
+
+TODO: 
+
+Make the sources of incoming spam available through the
+OSv API.
+
+Introduce delays.
+
+Modify OSv to drop a fraction of incoming SMTP packets,
+forcing spammers to consume more bandwidth.
+
+
+---->8---- Original smtp-benchmark README follows ---->8----
+
 smtp-benchmark version 1.0.0
 
 Copyright (c) 2003, 2004 Marc Balmer.

@@ -1,20 +1,30 @@
-.include <bsd.own.mk>
+PROGS = spamsink.so smtpsend
 
-SUBDIR= smtpsend smtpsink
+all : ${PROGS}
 
-.include <bsd.subdir.mk>
+spamsink.so : spamsink.c
+	$(CC) -o $@ -std=gnu99 -fPIC -shared $^
 
-NAME=smtp-benchmark
-VERSION=1.0.4
+smtpsend : smtpsend.c
+	$(CC) -o $@ -std=gnu99 -lbsd -lpthread $^
 
-DIST=${NAME}-${VERSION}.tar.gz
+hooks : .git/hooks/pre-commit
 
-PRINT=	a2ps
-PFLAGS=	-E -g -C -T 4 --header="${NAME}-${VERSION}"
+.git/hooks/% : Makefile
+	echo "#!/bin/sh" > $@
+	echo "make `basename $@`" >> $@
+	chmod 755 $@
 
-dist: cleandir
-	(cd ..; tar czvf ${DIST} ${NAME}; md5 ${DIST} > ${DIST}.md5)
+pre-commit :
+	git diff-index --check HEAD
 
-print: cleandir
-	find . -type f -exec ${PRINT} ${PFLAGS} {} \;
+# Remove anything listed in the .gitignore file.
+# Remove empty directories because they cannot be versioned.
+clean :
+	rm -f ${PROGS}
+	find . -path ./.git -prune -o -print0 | \
+	git check-ignore -z --stdin | xargs -0 rm -f
+	find . -depth -mindepth 1 -type d -print0 | \
+	xargs -0 rmdir --ignore-fail-on-non-empty
 
+.PHONY : all clean hooks

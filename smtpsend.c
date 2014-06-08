@@ -31,7 +31,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <fcntl.h>
-#include <string.h>
+#include <bsd/string.h>
 #include <sys/types.h>
 #include <sys/socket.h>
 #include <sys/wait.h>
