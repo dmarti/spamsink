@@ -162,24 +162,6 @@ main(int argc, char *argv[])
 	if (bind(s, (struct sockaddr *) &server_sockaddr, sizeof(server_sockaddr)) == -1) 
 		errx(1, "bind to socket failed, errno=%d, %s", errno, strerror(errno));
 
-	/* Take precaution if we are running as root */
-	
-	if (!getuid()) {
-		struct passwd *passwd;
-		
-		if ((passwd = getpwnam("nobody")) == NULL)
-			errx(1, "can't change to user nobody, errno=%d, %s", errno, strerror(errno));
-		
-		if (chroot(ROOT_PATH))
-			errx(1, "can't chroot to %s, errno=%d, %s", ROOT_PATH, errno, strerror(errno));
-			
-		if (chdir("/"))
-			errx(1, "can't change to root directory /, errno=%d, %s", errno, strerror(errno));
-		
-		if (setuid(passwd->pw_uid))
-			errx(1, "setuid failed, errno=%d, %s", errno, strerror(errno));
-	}
-	
 	if (listen(s, 16) == -1)
 		errx(1, "deaf, errno=%d, %s", errno, strerror(errno));
 
