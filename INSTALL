@@ -1,0 +1,12 @@
+smtp-benchmark installation instructions
+
+1) Please take a look at the Makefiles in smtpsend/ and smtpsink/
+   and adapt them to your needs beore using them. 
+
+2) enter make in the smtp-benchmark directory or in one
+   of it's subdirectories (smtpsend, smtpsink) if you only
+   need that component.
+   
+3) as root, enter make install.  This will install smtpsend, smtpsink
+   and the manual pages in your system.
+   
