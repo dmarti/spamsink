@@ -11,9 +11,11 @@ base: cloudius/osv-base
 
 #
 # The command line passed to OSv to start up the application.
-# The HTTP server example takes one argument, the # document root.
 #
 cmdline: /spamsink.so
+
+# To run in verbose mode:
+# cmdline: /spamsink.so -v
 
 #
 # The command to use to build the application.  In this example, we just use
