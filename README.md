@@ -1,14 +1,10 @@
 spamsink: Dispose of spam, in the cloud.
 
-A memory hole/tarpit for spam, based on smtp-benchmark
-by Marc Balmer.
+A memory hole/tarpit for spam, based on smtp-benchmark by Marc Balmer.
 
-We knew that spammers control a lot of bandwidth, via
-botnets.
+We knew that spammers control a lot of bandwidth, via botnets.
 
-But now (bwah ha ha) we control much bandwidth too,
-because we have cheap or free cloud VMs.  Let the
-games begin.
+But now (bwah ha ha) we control much bandwidth too, because we have cheap or free cloud VMs.  Let the games begin.
 
 
 ##How to use:
@@ -24,8 +20,7 @@ games begin.
 
 Build and run: `capstan build && capstan run -n bridge`
 
-OSv will print the IP address.  In another terminal,
-point the smtpsend client at it:
+OSv will print the IP address.  In another terminal, point the smtpsend client at it:
 
 `./smtpsend -n 100`
 
@@ -33,17 +28,15 @@ point the smtpsend client at it:
 
 TODO: 
 
-Make the sources of incoming spam available through the
-OSv API.
+Make the sources of incoming spam available through the OSv API.
 
 Introduce delays.
 
-Modify OSv to drop a fraction of incoming SMTP packets,
-forcing spammers to consume more bandwidth.
+Modify OSv to drop a fraction of incoming SMTP packets, forcing spammers to consume more bandwidth.
 
 
----->8---- Original smtp-benchmark README follows ---->8----
-
+## Original smtp-benchmark README follows
+```
 smtp-benchmark version 1.0.0
 
 Copyright (c) 2003, 2004 Marc Balmer.
@@ -88,3 +81,4 @@ messages per connection.
 
 smtpsink comes in handy when the relaying performance of a MTA is
 to be measured.
+```
