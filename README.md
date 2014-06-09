@@ -1,10 +1,12 @@
-spamsink: Dispose of spam, in the cloud.
+# spamsink: Dispose of spam, in the cloud.
 
-A memory hole/tarpit for spam, based on smtp-benchmark by Marc Balmer.
+A memory hole for spam, based on smtp-benchmark by Marc Balmer.
 
-We knew that spammers control a lot of bandwidth, via botnets.
+We knew that spammers control a lot of bandwidth, because botnets.  So, for a long time, people thought that just accepting and discarding spam would be counterproductive. The spammers get bandwidth for free, and servers are expensive. 
 
-But now (bwah ha ha) we control much bandwidth too, because we have cheap or free cloud VMs.  Let the games begin.
+But now lots of people have access to cheap or even free cloud VMs.  If you have extra unused cloud capacity, you can use part of it as a spam sink.
+
+This is a simple way to build a stand-alone VM that accepts and drops all spam.
 
 
 ##How to use:
@@ -26,9 +28,11 @@ OSv will print the IP address.  In another terminal, point the smtpsend client a
 
 
 
-TODO: 
+## TODO: 
 
-Make the sources of incoming spam available through the OSv API.
+Fix the SMTP banner to look like a real mail server.
+
+Save the IP adddresses from which spam comes, and make them available through the OSv API.
 
 Introduce delays.
 
