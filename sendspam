@@ -1,0 +1,21 @@
+#!/usr/bin/perl -w
+
+use strict;
+use Email::Date::Format qw(email_date);
+use File::Slurp qw(slurp);
+use Getopt::Long;
+use Mail::Sendmail;
+
+my $Server = '192.168.122.89';
+
+GetOptions ("server|s=s" => \$Server);
+
+my %message = ( 'From'    =>    'Spam Test <spamtest@example.com>',
+                'To'      =>    'Spam Test <spamtest@example.com>',
+                'Date'    =>    email_date(),
+                'Subject' =>    "Spam Test",
+         );
+
+$message{'smtp'} = $Server;
+sendmail ( %message ) or die $Mail::Sendmail::error;
+

@@ -1,12 +1,9 @@
-PROGS = spamsink.so smtpsend
+PROGRAM = spamsink.so
 
-all : ${PROGS}
+all : ${PROGRAM}
 
 spamsink.so : spamsink.c
 	$(CC) -o $@ -std=gnu99 -fPIC -shared $^
-
-smtpsend : smtpsend.c
-	$(CC) -o $@ -std=gnu99 -lbsd -lpthread $^
 
 hooks : .git/hooks/pre-commit
 
@@ -21,7 +18,7 @@ pre-commit :
 # Remove anything listed in the .gitignore file.
 # Remove empty directories because they cannot be versioned.
 clean :
-	rm -f ${PROGS}
+	rm -f ${PROGRAM}
 	find . -path ./.git -prune -o -print0 | \
 	git check-ignore -z --stdin | xargs -0 rm -f
 	find . -depth -mindepth 1 -type d -print0 | \
