@@ -10,13 +10,26 @@ But now (bwah ha ha) we control much bandwidth too,
 because we have cheap or free cloud VMs.  Let the
 games begin.
 
-How to use:
+
+##How to use:
 
 1. Build this with "capstan build"
 
 2. Deploy to your favorite private or public cloud.
 
 3. Point some MX records and spamtrap addresses at it.
+
+
+## To try it out:
+
+Build and run: `capstan build && capstan run -n bridge`
+
+OSv will print the IP address.  In another terminal,
+point the smtpsend client at it:
+
+`./smtpsend -n 100`
+
+
 
 TODO: 
 
