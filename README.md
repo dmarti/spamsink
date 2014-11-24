@@ -2,25 +2,33 @@
 
 A memory hole for spam, based on smtp-benchmark by Marc Balmer.
 
-We knew that spammers control a lot of bandwidth, because botnets.  So, for a long time, people thought that just accepting and discarding spam would be counterproductive. The spammers get bandwidth for free, and servers are expensive. 
+We knew that spammers control a lot of bandwidth, because botnets.  So, for a long time, people thought that fighting spam by just accepting and discarding huge amounts of it would be counterproductive. The spammers get bandwidth for free, and servers are expensive.
 
-But now lots of people have access to cheap or even free cloud VMs.  If you have extra unused cloud capacity, you can use part of it as a spam sink.
+For a long time, our only hope for fighting spam was to batten down the hatches.  Assume that the spammer control more computing power and bandwidth than we do, and just do the best we can to filter it.
 
-This is a simple way to build a stand-alone VM that accepts and drops all spam.
+## That was then, this is Cloud
 
-Got a free account on a cloud provider, or extra capacity on your hypervisor?   Run a spam sink.
+Is that still true?  Except in high-end "fiberhoods," the bandwidth available to end-user machines is stagnant.  Especially upstream bandwidth.  And, much as we like to complain about the security situation on commodity operating systems, it is getting somewhat better.  
+
+And cloud computing continues to be built out everywhere.  Now, lots of people have access to cheap or even free cloud VMs.  If you have extra unused cloud capacity, you can use part of it as a spam sink.
+
+## Do spammers still outnumber us?  Let's find out.
+
+This project is a simple way to build a stand-alone VM that accepts and drops all spam.
+
+Got a free account on a cloud provider, or extra capacity on your hypervisor?   Run a spam sink.  (If you're a cloud provider, you can stick spam sinks on all your spare IP addresses.)
 
 
 ##How to use:
 
-1. Build this with "capstan build"
+1. Build with "capstan build"
 
 2. Deploy to your favorite private or public cloud.
 
 3. Point some MX records and spamtrap addresses at it.
 
 
-## To try it out:
+## To try it out locally:
 
 Build and run: `capstan build && capstan run -n bridge`
 
