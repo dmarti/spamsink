@@ -127,6 +127,7 @@ main(int argc, char *argv[])
 	pthread_t tid;
 	pthread_attr_t attr;
 	FILE *fp;
+	char origin[INET_ADDRSTRLEN];
 	
 	while ((ch = getopt(argc, argv, "vp:?")) != -1) {
 		switch (ch) {
@@ -165,22 +166,21 @@ main(int argc, char *argv[])
 	if (listen(s, 16) == -1)
 		errx(1, "deaf, errno=%d, %s", errno, strerror(errno));
 
-	if (verbose)
-		printf("smtpsink: listen on port %d for incoming connections\n", port);
-		
 	while (1) {
  		len = sizeof(ec);
    
-		if ((fd = accept(s, (void *) &ec, &len)) == -1)
+		if ((fd = accept(s, (void *) &ec, &len)) == -1) {
 			errx(5, "unable to accept connection, errno=%d, %s", errno, strerror(errno));
-			
+		} 
+
+		inet_ntop(AF_INET, &(ec.sin_addr.s_addr),
+				origin, INET_ADDRSTRLEN);
+		printf("connect from %s\n", origin);
+
 		if ((fp = fdopen(fd, "r+")) == NULL)
 			errx(5, "unable to open input, errno=%d,%s", errno, strerror(errno));
-		if (verbose) {
-			handle_connection(fp);
-		} else {
-			if (pthread_create(&tid, &attr, handle_connection, fp))
-				errx(1, "can't create thread, errno=%d, %s", errno, strerror(errno));
-		}
+		if (pthread_create(&tid, &attr, handle_connection, fp))
+			errx(1, "can't create thread, errno=%d, %s", errno, strerror(errno));
+
 	}
 }

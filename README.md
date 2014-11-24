@@ -8,6 +8,8 @@ But now lots of people have access to cheap or even free cloud VMs.  If you have
 
 This is a simple way to build a stand-alone VM that accepts and drops all spam.
 
+Got a free account on a cloud provider, or extra capacity on your hypervisor?   Run a spam sink.
+
 
 ##How to use:
 

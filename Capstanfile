@@ -7,7 +7,7 @@
 # Name of the base image.  Capstan will download this automatically from
 # the Cloudius S3 repository.
 #
-base: cloudius/osv-base
+base: cloudius/osv
 
 #
 # The command line passed to OSv to start up the application.
