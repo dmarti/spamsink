@@ -4,7 +4,16 @@ A memory hole for spam, based on smtp-benchmark by Marc Balmer.
 
 We knew that spammers control a lot of bandwidth, because botnets.  So, for a long time, people thought that fighting spam by just accepting and discarding huge amounts of it would be counterproductive. The spammers get bandwidth for free, and servers are expensive.
 
-For a long time, our only hope for fighting spam was to batten down the hatches.  Assume that the spammer control more computing power and bandwidth than we do, and just do the best we can to filter it.
+There have been some interesting
+projects to 
+try to waste the spammer's bandwidth by fooling the sender into wasting precious bandwidth and CPU by forcing it to retransmit packets, reorder, and retransmit them.
+
+For example, see [Spam Cannibal](http://www.spamcannibal.org/cannibal.cgi). Other spam tarpits focused on a different part of the spam problem: trapping the address-harvesting part of the spam operation.  Address generators would build a dynamic site which has an infinite hierarchy of random pages, each containing a few bogus email addresses and links to more of these fake pages.  An example is [Sugarplum](http://www.devin.com/sugarplum/) by Devin Carraway.
+
+Sugarplum created pages such as [http://www.devin.com/peaches/lemons](this randomly generated page) and our [directory of people who want to buy herbal weight loss products](http://www.devin.com/peaches/lemons/disentangles/fingerboard) (psst. humans. over here. Not really, just more spamtrap addresses.)  
+
+But in most cases, for a long time, our only hope for fighting spam was to batten down the hatches.  Assume that the spammers control more computing power and bandwidth than we do, and just do the best we can to filter it.
+
 
 ## That was then, this is Cloud
 
@@ -21,11 +30,11 @@ Got a free account on a cloud provider, or extra capacity on your hypervisor?   
 
 ##How to use:
 
-1. Build with "capstan build"
+1. Build a spamsink VM with "capstan build" (You can get the Capstan VM-building tool from the [https://github.com/cloudius-systems/capstan](Capstan project on GitHub).
 
 2. Deploy to your favorite private or public cloud.
 
-3. Point some MX records and spamtrap addresses at it.
+3. Point some MX records and spamtrap addresses at it.  You can run Sugarplum (above) to generate as many random addresses as you want.
 
 
 ## To try it out locally:
@@ -47,6 +56,13 @@ Save the IP adddresses from which spam comes, and make them available through th
 Introduce delays.
 
 Modify OSv to drop a fraction of incoming SMTP packets, forcing spammers to consume more bandwidth.
+
+## Sources
+
+**Marc Balmer:** original smtp-benchmark suite, including smtpsink
+
+**Nadav Har'El:** background info on spam tarpits
+
 
 
 ## Original smtp-benchmark README follows
@@ -96,3 +112,5 @@ messages per connection.
 smtpsink comes in handy when the relaying performance of a MTA is
 to be measured.
 ```
+
+
